@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+        #app h4{
+            color: #e4e200;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="你可以点击我试试" @click="lang">
+        <input type="button" value="好累呀!停下来,休息下吧" @click="stop">
+        <h4 v-text="msg"></h4>
+    </div>
+    <script>
+        var vm =new Vue({
+            el:"#app",
+            data:{
+                msg:"赵妤濛,是傻瓜^ ^ ^ ^!",
+                timerID:null
+            },
+            methods:{
+                lang() {
+                    if(this.timerID !=null) return;
+                    this.timerID = setInterval(() => {
+                        var start = this.msg.substring(0,1)
+                        var end = this.msg.substring(1)
+                        this.msg = end + start
+                    },100)
+                },
+                stop() {
+                    clearInterval(this.timerID);
+                    this.timerID = null;
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
